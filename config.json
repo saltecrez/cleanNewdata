@@ -1,0 +1,11 @@
+{
+        "ingestion_folder": "/mnt/newdata/",
+        "logfile": "/home/controls/bin/clean_newdata/log.txt",
+        "db_host": "localhost",
+        "db_password": "Archa123.",
+        "db_user": "archa",
+        "db_schema": "metadata",
+        "sql_luci": "select id from luci where file_name=%s;",
+        "sql_mods": "select id from mods where file_name=%s;",
+        "sql_lbc": "select id from lbc where file_name=%s;"
+}
