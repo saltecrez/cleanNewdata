@@ -1,6 +1,6 @@
 {
         "ingestion_folder": "/mnt/newdata/",
-        "logfile": "/home/controls/clean_newdata/log.txt",
+        "logfile": "log.txt",
         "db_host": "localhost",
         "db_password": "Archa123.",
         "db_user": "archa",

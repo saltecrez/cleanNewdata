@@ -11,7 +11,6 @@ __date__ = "July 2019"
 
 import sys
 import os
-import shutil
 import MySQLdb
 from glob import glob
 from shutil import Error
@@ -25,7 +24,7 @@ CWD = os.path.dirname(os.path.abspath(sys.argv[0]))
 cnf = readJson('config.json',CWD)
 
 # Open logfile 
-filelog = open(cnf['logfile'],'a')
+filelog = open(CWD + '/' + cnf['logfile'],'a')
 
 # create files list
 a = list(glob(cnf['ingestion_folder'] + '/*.fit*'))
