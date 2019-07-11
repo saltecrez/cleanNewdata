@@ -9,7 +9,6 @@ __date__ = "July 2019"
    cleaning of the ingestion LBT folder on the mountain
 '''
 
-import time
 import sys
 import os
 import shutil
@@ -19,8 +18,10 @@ from shutil import Error
 from readJson import readJson
 from fileRemoval import fileRemoval
 
+# Get current working directory
+CWD = os.path.dirname(os.path.abspath(sys.argv[0]))
+
 # Load input file 
-CWD = os.getcwd()
 cnf = readJson('config.json',CWD)
 
 # Open logfile 
