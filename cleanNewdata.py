@@ -42,26 +42,14 @@ for i in a:
 
 	if ftl == 'luc':
 		sql = cnf['sql_luci']
-		try:
-			fileRemoval(i,sql,cur,full_fit,filelog)
-		except Exception as e:
-			e = sys.exc_info()
-			filelog.write(str(e[1]))
-	
+		fileRemoval(i,sql,cur,full_fit,filelog)
+
 	elif ftl == 'mod':
                 sql = cnf['sql_mods']
-                try:
-                        fileRemoval(i,sql,cur,full_fit,filelog)
-                except Exception as e:
-                        e = sys.exc_info()
-                        filelog.write(str(e[1]))
+		fileRemoval(i,sql,cur,full_fit,filelog)
 
 	elif ftl == 'lbc':
                 sql = cnf['sql_lbc']
-                try:
-                        fileRemoval(i,sql,cur,full_fit,filelog)
-                except Exception as e:
-                        e = sys.exc_info()
-                        filelog.write(str(e[1]))
+		fileRemoval(i,sql,cur,full_fit,filelog)
 
 filelog.close()

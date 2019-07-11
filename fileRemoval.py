@@ -8,8 +8,8 @@ import os
 
 def fileRemoval(i,sql,cur,full_fit,file):
         cur.execute(sql, [full_fit])
-        resultDB = cur.fetchall()
         if cur.rowcount == 1:
+		print cur.rowcount
                 try:
 			file.write(i + '\n')
                         os.remove(i)
