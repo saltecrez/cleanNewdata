@@ -1,11 +1,11 @@
 {
-        "ingestion_folder": "/home/archivio/echelle_da_archiviare/",
-        "second_ingestion_folder": "/home/archivio/newdata/T182/",
+        "ingestion_folder": "/mnt/newdata/",
+        "second_ingestion_folder": "",
         "logfile": "log.txt",
         "db_host": "localhost",
         "db_password": "Archa123.",
         "db_user": "archa",
-        "db_schema": "metadata_asiago",
-        "file_init": ["AF", "EC", "SB"],
-        "sql_instr": ["AFO", "ECH", "SBI"]
+        "db_schema": "metadata",
+        "file_init": ["mo","lu"],
+        "sql_instr": ["mods","luci"]
 }

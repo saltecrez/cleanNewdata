@@ -7,14 +7,12 @@ __date__ = "July 2019"
 '''
    This script is supposed to be used for the daily 
    cleaning of the ingestion folders at the telescope
-   Limited to 3 instruments for now.
 '''
 
 import sys
 import os
 import MySQLdb
 from glob import glob
-from shutil import Error
 from readJson import readJson
 from fileRemoval import fileRemoval
 
@@ -46,16 +44,12 @@ for i in files_list:
         full_fit = base + '.fits.gz'
 	ftl = base[:2]
 
-	if ftl == instr_list[0]:
-		sql = 'select id from ' + sql_list[0] + ' where file_name=%s;' 
-		fileRemoval(i,sql,cur,full_fit,filelog)
-
-	elif ftl == instr_list[1]:
-		sql = 'select id from ' + sql_list[1] + ' where file_name=%s;' 
-		fileRemoval(i,sql,cur,full_fit,filelog)
-
-	elif ftl == instr_list[2]:
-		sql = 'select id from ' + sql_list[2] + ' where file_name=%s;' 
-		fileRemoval(i,sql,cur,full_fit,filelog)
+	for j in range(len(instr_list)):
+		if ftl == instr_list[j]:
+			sql = 'select id from ' + sql_list[j] + ' where file_name=%s;' 
+			fileRemoval(i,sql,cur,full_fit,filelog)
+			break
+		else:
+			continue
 
 filelog.close()
