@@ -16,6 +16,7 @@ from glob import glob
 from readJson import readJson
 from fileRemoval import fileRemoval
 from md5Checksum import md5Checksum
+from storagePathConstructor import storagePathConstructor
 
 # Get current working directory
 CWD = os.path.dirname(os.path.abspath(sys.argv[0]))
@@ -48,8 +49,9 @@ for i in files_list:
 
 	for j in range(len(instr_list)):
 		if ftl == instr_list[j]:
-			sql_query = 'select id, checksum, checksum_gz, storage_path, file_path, file_version from ' + sql_list[j] + ' where file_name=%s;' 
-			fileRemoval(i,sql_query,cks_newdata,cur,full_fit,filelog)
+			sql_query = 'select id, checksum, checksum_gz from ' + sql_list[j] + ' where file_name=%s;' 
+			storage_path = storagePathConstructor(cur,sql_list[j],full_fit)
+			fileRemoval(i,sql_query,storage_path,cks_newdata,cur,full_fit,filelog)
 			break
 		else:
 			continue

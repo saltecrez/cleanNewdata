@@ -9,16 +9,12 @@ import gzip
 import hashlib
 from md5Checksum import md5Checksum
 
-def fileRemoval(i,sql_query,cks_newdata,cur,full_fit,file):
+def fileRemoval(i,sql_query,storage_path,cks_newdata,cur,full_fit,file):
         cur.execute(sql_query, [full_fit])
 	result = cur.fetchall()
-	id_db = result[0][0]
 	cks_db = result[0][1]
 	cksgz_db = result[0][2]
-	stpath = result[0][3]
-	flpath = result[0][4]
-	flver = result[0][5]
-	full_path = stpath + flpath + '/' + str(flver) + '/' + full_fit
+	full_path = storage_path + full_fit
 	cksgz_storage = md5Checksum(full_path)
 
         fit = gzip.open(full_path, 'rb')
