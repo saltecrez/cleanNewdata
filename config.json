@@ -1,11 +1,11 @@
 {
-        "ingestion_folder": "/mnt/newdata/",
+        "ingestion_folder": "/home/archivio/from_git/newdata_test/",
         "second_ingestion_folder": "",
         "logfile": "log.txt",
         "db_host": "localhost",
         "db_password": "Archa123.",
         "db_user": "archa",
-        "db_schema": "metadata",
-        "file_init": ["mo","lu"],
-        "sql_instr": ["mods","luci"]
+        "db_schema": "metadata_asiago",
+        "file_init": ["SC"],
+        "sql_instr": ["SBI"]
 }

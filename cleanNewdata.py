@@ -15,6 +15,7 @@ import MySQLdb
 from glob import glob
 from readJson import readJson
 from fileRemoval import fileRemoval
+from md5Checksum import md5Checksum
 
 # Get current working directory
 CWD = os.path.dirname(os.path.abspath(sys.argv[0]))
@@ -40,14 +41,15 @@ sql_list = cnf['sql_instr']
 
 # remove files after cecking DB
 for i in files_list:
+	cks_newdata = md5Checksum(i)
         base = os.path.basename(os.path.splitext(os.path.normpath(i))[0])
         full_fit = base + '.fits.gz'
 	ftl = base[:2]
 
 	for j in range(len(instr_list)):
 		if ftl == instr_list[j]:
-			sql = 'select id from ' + sql_list[j] + ' where file_name=%s;' 
-			fileRemoval(i,sql,cur,full_fit,filelog)
+			sql_query = 'select id, checksum, checksum_gz, storage_path, file_path, file_version from ' + sql_list[j] + ' where file_name=%s;' 
+			fileRemoval(i,sql_query,cks_newdata,cur,full_fit,filelog)
 			break
 		else:
 			continue
