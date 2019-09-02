@@ -9,11 +9,12 @@ import gzip
 import hashlib
 from md5Checksum import md5Checksum
 
-def fileRemoval(i,sql_query,storage_path,cks_newdata,cur,full_fit,file):
+def fileRemoval(i,storage_path,cks_newdata,cur,full_fit,file):
+	sql_query = 'select checksum, checksum_gz from ' + sql_list[j] + ' where file_name=%s;'
         cur.execute(sql_query, [full_fit])
 	result = cur.fetchall()
-	cks_db = result[0][1]
-	cksgz_db = result[0][2]
+	cks_db = result[0][0]
+	cksgz_db = result[0][1]
 	full_path = storage_path + full_fit
 	cksgz_storage = md5Checksum(full_path)
 
@@ -28,4 +29,5 @@ def fileRemoval(i,sql_query,storage_path,cks_newdata,cur,full_fit,file):
                         os.remove(i)
                 except Exception as e:
                         e = sys.exc_info()
+			print e
                         file.write(str(e[1]))

@@ -49,9 +49,16 @@ for i in files_list:
 
 	for j in range(len(instr_list)):
 		if ftl == instr_list[j]:
-			sql_query = 'select id, checksum, checksum_gz from ' + sql_list[j] + ' where file_name=%s;' 
-			storage_path = storagePathConstructor(cur,sql_list[j],full_fit)
-			fileRemoval(i,sql_query,storage_path,cks_newdata,cur,full_fit,filelog)
+			sql_query = 'select id from ' + sql_list[j] + ' where file_name=%s;' 
+			cur.execute(sql_query, [full_fit])
+			if cur.rowcount == 1:
+				try:
+					storage_path = storagePathConstructor(cur,sql_list[j],full_fit)
+					fileRemoval(i,storage_path,cks_newdata,cur,full_fit,filelog)
+				except Exception as e:
+					e = sys.exc_info()
+					print e
+					filelog.write(str(e[1]))
 			break
 		else:
 			continue
