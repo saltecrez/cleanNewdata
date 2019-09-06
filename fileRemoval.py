@@ -25,8 +25,8 @@ def fileRemoval(i,storage_path,cks_newdata,dbtable,cur,full_fit,file):
 
         if cksgz_storage == cksgz_db and cks_storage == cks_db == cks_newdata:
 		try:
-			file.write("%s %s\n" % (i, "has been removed because consistently found in database and storage"))
                         os.remove(i)
+			file.write("%s %s\n" % (i, "has been removed because consistently found in database and storage"))
                 except Exception as e:
                         e = sys.exc_info()
                         file.write(str(e[1]))

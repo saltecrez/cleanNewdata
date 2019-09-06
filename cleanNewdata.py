@@ -51,9 +51,11 @@ for i in files_list:
 		if ftl == instr_list[j]:
 			sql_query = 'select id from ' + sql_list[j] + ' where file_name=%s;' 
 			cur.execute(sql_query, [full_fit])
-			if cur.rowcount == 1:
+			version = cur.rowcount-1
+
+			if cur.rowcount != 0:
 				try:
-					storage_path = storagePathConstructor(cur,sql_list[j],full_fit)
+					storage_path = storagePathConstructor(cur,version,sql_list[j],full_fit)
 					fileRemoval(i,storage_path,cks_newdata,sql_list[j],cur,full_fit,filelog)
 				except Exception as e:
 					e = sys.exc_info()
