@@ -9,8 +9,8 @@ import gzip
 import hashlib
 from md5Checksum import md5Checksum
 
-def fileRemoval(i,storage_path,cks_newdata,cur,full_fit,file):
-	sql_query = 'select checksum, checksum_gz from ' + sql_list[j] + ' where file_name=%s;'
+def fileRemoval(i,storage_path,cks_newdata,dbtable,cur,full_fit,file):
+	sql_query = 'select checksum, checksum_gz from ' + dbtable + ' where file_name=%s;'
         cur.execute(sql_query, [full_fit])
 	result = cur.fetchall()
 	cks_db = result[0][0]
@@ -25,9 +25,10 @@ def fileRemoval(i,storage_path,cks_newdata,cur,full_fit,file):
 
         if cksgz_storage == cksgz_db and cks_storage == cks_db == cks_newdata:
 		try:
-			file.write(i + '\n')
+			file.write("%s %s\n" % (i, "has been removed because consistently found in database and storage"))
                         os.remove(i)
                 except Exception as e:
                         e = sys.exc_info()
-			print e
                         file.write(str(e[1]))
+	else:
+		file.write("%s %s\n" % (full_fit, "has been archived but the checksum cross-check among storage, newdata and database failed"))

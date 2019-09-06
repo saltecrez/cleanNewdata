@@ -54,12 +54,12 @@ for i in files_list:
 			if cur.rowcount == 1:
 				try:
 					storage_path = storagePathConstructor(cur,sql_list[j],full_fit)
-					fileRemoval(i,storage_path,cks_newdata,cur,full_fit,filelog)
+					fileRemoval(i,storage_path,cks_newdata,sql_list[j],cur,full_fit,filelog)
 				except Exception as e:
 					e = sys.exc_info()
-					print e
 					filelog.write(str(e[1]))
-			break
+			else:
+				filelog.write("%s %s\n" % (full_fit, "not found in database")
 		else:
 			continue
 
