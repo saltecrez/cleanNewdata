@@ -6,6 +6,7 @@ __date__ = "January 2020"
 
 import os
 import sys
+import gzip
 import smtplib
 import hashlib
 import subprocess
@@ -45,6 +46,13 @@ class md5Checksum(object):
                 for chunk in iter(lambda: f.read(4096), b""):
                     hash_md5.update(chunk)
             return hash_md5.hexdigest()
+
+    def get_checksum_gz(self):
+        fopen = gzip.open(self.filename, 'rb')
+        fcontent = fopen.read()
+        chks = hashlib.md5(fcontent).hexdigest()
+        fopen.close()
+        return chks
 
 if __name__ == "__main__":
     VerifyLinux()
