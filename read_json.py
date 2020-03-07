@@ -43,9 +43,17 @@ class ReadJson(object):
         db_name = self._create_dictionary().get("dbname")
         return db_name
 
-    def get_failures_path(self):
-        failures_path = self._create_dictionary().get("failurefolder")
-        return failures_path
+    def get_db_port(self):
+        db_port = self._create_dictionary().get("dbport")
+        return db_port
+
+    def get_db_tables(self):
+        db_tables = self._create_dictionary().get("dbtables")
+        return db_tables
+
+    def get_ingest_folder(self):
+        ing_folder = self._create_dictionary().get("ingestfolder")
+        return ing_folder
 
 if __name__ == "__main__":
     filename = 'conf.json'

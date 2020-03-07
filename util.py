@@ -4,12 +4,6 @@ __author__ = "Elisa Londero"
 __email__ = "elisa.londero@inaf.it"
 __date__ = "January 2020"
 
-
-'''
-
-vautare un machine name in entrata per rendere le allerte generiche
-
-'''
 import os
 import sys
 import smtplib
@@ -44,10 +38,13 @@ class md5Checksum(object):
 
     def calculate_checksum(self):
         hash_md5 = hashlib.md5()
-        with open(self.filename, "rb") as f:
-            for chunk in iter(lambda: f.read(4096), b""):
-                hash_md5.update(chunk)
-        return hash_md5.hexdigest()
+        if self.filename is None:
+            pass
+        else: 
+            with open(self.filename, "rb") as f:
+                for chunk in iter(lambda: f.read(4096), b""):
+                    hash_md5.update(chunk)
+            return hash_md5.hexdigest()
 
 if __name__ == "__main__":
     VerifyLinux()
