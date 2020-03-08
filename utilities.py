@@ -4,17 +4,14 @@ __author__ = "Elisa Londero"
 __email__ = "elisa.londero@inaf.it"
 __date__ = "January 2020"
 
-import os
-import sys
 import gzip
 import smtplib
 import hashlib
-import subprocess
 import email.utils
+from logclass import LogClass
 from email.mime.text import MIMEText
 
-class VerifyLinux(object):
-    assert ('linux' in sys.platform), "Function can only run on Linux systems."
+log = LogClass('',True).get_logger()
 
 class SendEmail(object):
     def __init__(self, message, recipient, sender, smtphost):
@@ -30,7 +27,8 @@ class SendEmail(object):
         msg['From'] = email.utils.formataddr((hostname+'WatchDog', self.sender))
         msg['Subject'] = hostname + ' alert'
         server = smtplib.SMTP(self.smtphost, 25)
-        server.sendmail(self.sender, [self.recipient], msg.as_string())
+        try:
+            server.sendmail(self.sender, [self.recipient], msg.as_string())
         server.quit()
 
 class md5Checksum(object):

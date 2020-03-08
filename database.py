@@ -6,7 +6,11 @@ __date__ = "September 2019"
 
 import pymysql
 from sqlalchemy import create_engine
+from sqlalchemy import exc
 from sqlalchemy.orm import sessionmaker
+from logclass import LogClass
+
+log = LogClass('',True).get_logger()
 
 class MySQLDatabase(object):
     def __init__(self, user, pwd, host, port, dbname):
@@ -22,23 +26,23 @@ class MySQLDatabase(object):
             engine = create_engine(sdb)
             db_session = sessionmaker(bind=engine)
             return db_session()
-        except Exception as e:
-            print(e)
-
-    def close_session(self):
-        try:
-            self.create_session().close()
-            return True
-        except Exception as e: 
-            print(e)
-            return False
+        except exc.SQLAlchemyError as e:
+            log.error("{0}".format(e))
 
     def validate_session(self):
         try:
             connection = self.create_session().connection()
             return True
-        except Exception as e:
-            print(e)
+        except exc.SQLAlchemyError as e:
+            log.error("{0}".format(e))
+            return False
+
+    def close_session(self):
+        try:
+            self.create_session().close()
+            return True
+        except exc.SQLAlchemyError as e: 
+            log.error("{0}".format(e))
             return False
 
 if __name__ == "__main__":
@@ -49,5 +53,5 @@ if __name__ == "__main__":
     port = '3307'
     db = MySQLDatabase(user,pwd,host,port,dbname)
     Session = db.create_session()
-    print(db.validate_session())
-    print(db.close_session())
+    db.validate_session()
+    #print(db.close_session())
