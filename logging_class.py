@@ -2,20 +2,20 @@
 
 __author__ = "Elisa Londero"
 __email__ = "elisa.londero@inaf.it"
-__date__ = "June 2018"
+__date__ = "March 2020"
 
 import os
 import logging
 import logging.handlers
 
-class LogClass(object):
+class LoggingClass(object):
     def __init__(self, logger_name='root', create_file=False):
-        self.logger_name = logger_name 
+        self.logger_name = logger_name
         self.create_file = create_file
 
     def get_logger(self):
         log = logging.getLogger(self.logger_name)
-        log.setLevel(level=logging.INFO)
+        log.setLevel(level=logging.DEBUG)
 
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s','%Y-%m-%d %H:%M:%S')
 
@@ -32,4 +32,9 @@ class LogClass(object):
             log.addHandler(fh)
 
         log.addHandler(ch)
-        return  log 
+        return  log
+
+class MissingConfParameter(Exception):
+    def __init__(self, par):
+        super().__init__(f"Parameter {par} not defined in configuration file")
+        self.par = par

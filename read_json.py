@@ -6,55 +6,113 @@ __date__ = "June 2018"
 
 import os
 import json
+from logging_class import LoggingClass
+from logging_class import MissingConfParameter
+
+log = LoggingClass('',True).get_logger()
 
 class ReadJson(object):
     def _create_dictionary(self):
-        json_config_file_path = '%s/%s' % (os.getcwd(), 'conf.json')
-        config_properties = {}
-        with open(json_config_file_path) as data_file:
-            config_properties = json.load(data_file)
-        return config_properties
+        try:
+            json_config_file_path = '%s/%s' % (os.getcwd(), 'conf.json')
+            config_properties = {}
+            with open(json_config_file_path) as data_file:
+                config_properties = json.load(data_file)
+            return config_properties
+        except Exception as e:
+            log.error("{0}".format(e))
+            exit(1)
 
     def get_recipient(self):
-        recipient = self._create_dictionary().get("email")
-        return recipient
+        try:
+            recipient = self._create_dictionary().get("email")
+            if recipient is None:
+                raise MissingConfParameter('email')
+            return recipient
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_sender(self):
-        sender = self._create_dictionary().get("sender")
-        return sender
+        try:
+            sender = self._create_dictionary().get("sender")
+            if sender is None:
+                raise MissingConfParameter('sender')
+            return sender
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_smtp_host(self):
-        smtp_host = self._create_dictionary().get("smtphost")
-        return smtp_host
+        try:
+            smtp_host = self._create_dictionary().get("smtphost")
+            if smtp_host is None:
+                raise MissingConfParameter('smtp_host')
+            return smtp_host
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_db_host(self):
-        db_host = self._create_dictionary().get("dbhost")
-        return db_host
+        try:
+            db_host = self._create_dictionary().get("dbhost")
+            if db_host is None:
+                raise MissingConfParameter('db_host')
+            return db_host
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_db_user(self):
-        db_user = self._create_dictionary().get("dbuser")
-        return db_user
+        try:
+            db_user = self._create_dictionary().get("dbuser")
+            if db_user is None:
+                raise MissingConfParameter('db_user')
+            return db_user
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_db_pwd(self):
-        db_pwd = self._create_dictionary().get("dbpwd")
-        return db_pwd
+        try:
+            db_pwd = self._create_dictionary().get("dbpwd")
+            if db_pwd is None:
+                raise MissingConfParameter('db_pwd')
+            return db_pwd
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_db_name(self):
-        db_name = self._create_dictionary().get("dbname")
-        return db_name
+        try:
+            db_name = self._create_dictionary().get("dbname")
+            if db_name is None:
+                raise MissingConfParameter('db_name')
+            return db_name
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_db_port(self):
-        db_port = self._create_dictionary().get("dbport")
-        return db_port
+        try:
+            db_port = self._create_dictionary().get("dbport")
+            if db_port is None:
+                raise MissingConfParameter('db_port')
+            return db_port
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_db_tables(self):
-        db_tables = self._create_dictionary().get("dbtables")
-        return db_tables
+        try:
+            db_tables = self._create_dictionary().get("dbtables")
+            if db_tables is None:
+                raise MissingConfParameter('db_tables')
+            return db_tables
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
     def get_ingest_folder(self):
-        ing_folder = self._create_dictionary().get("ingestfolder")
-        return ing_folder
+        try:
+            ing_folder = self._create_dictionary().get("ingestfolder")
+            if ing_folder is None:
+                raise MissingConfParameter('ing_folder')
+            return ing_folder
+        except MissingConfParameter as e:
+            log.error("{0}".format(e))
 
 if __name__ == "__main__":
-    filename = 'conf.json'
-    print(ReadJson().get_db_pwd())
+    print(ReadJson().get_db_user())
+#    print(ReadJson().get_db_host())

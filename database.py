@@ -6,11 +6,10 @@ __date__ = "September 2019"
 
 import pymysql
 from sqlalchemy import create_engine
-from sqlalchemy import exc
 from sqlalchemy.orm import sessionmaker
-from logclass import LogClass
+from logging_class import LoggingClass
 
-log = LogClass('',True).get_logger()
+log = LoggingClass('',True).get_logger()
 
 class MySQLDatabase(object):
     def __init__(self, user, pwd, host, port, dbname):
@@ -21,19 +20,19 @@ class MySQLDatabase(object):
         self.dbname = dbname
 
     def create_session(self):
+        sdb = 'mysql+pymysql://%s:%s@%s:%s/%s'%(self.user,self.pwd,self.host,self.port,self.dbname)
         try:
-            sdb = 'mysql+pymysql://%s:%s@%s:%s/%s'%(self.user,self.pwd,self.host,self.port,self.dbname)
             engine = create_engine(sdb)
             db_session = sessionmaker(bind=engine)
             return db_session()
-        except exc.SQLAlchemyError as e:
+        except Exception as e:
             log.error("{0}".format(e))
 
     def validate_session(self):
         try:
             connection = self.create_session().connection()
             return True
-        except exc.SQLAlchemyError as e:
+        except Exception as e:
             log.error("{0}".format(e))
             return False
 
@@ -41,7 +40,7 @@ class MySQLDatabase(object):
         try:
             self.create_session().close()
             return True
-        except exc.SQLAlchemyError as e: 
+        except Exception as e: 
             log.error("{0}".format(e))
             return False
 
@@ -54,4 +53,4 @@ if __name__ == "__main__":
     db = MySQLDatabase(user,pwd,host,port,dbname)
     Session = db.create_session()
     db.validate_session()
-    #print(db.close_session())
+    print(db.close_session())
