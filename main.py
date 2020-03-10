@@ -19,12 +19,16 @@ log = LoggingClass('',True).get_logger()
 class NewdataFilesList(object):
 
     def create_list(self):
-        ing_fldr = rj.get_ingest_folder()
-        fits_list = []
-        for i in ing_fldr:
-            fits_list.append(list(glob(i + '/*.fit*')))
-        flat_list = [item for sublist in fits_list for item in sublist]
-        return flat_list
+        try:
+            ing_fldr = rj.get_ingest_folder()
+            fits_list = []
+            for i in ing_fldr:
+                fits_list.append(list(glob(i + '/*.fit*')))
+            flat_list = [item for sublist in fits_list for item in sublist]
+            return flat_list
+        except Exception as e:
+            e = sys.exc_info()
+            log.error("{0}".format(e))
 
 def main():
     dbuser = rj.get_db_user();  dbpwd = rj.get_db_pwd()   
@@ -57,8 +61,10 @@ def main():
                         try:
                             os.remove(file_path)
                         except Exception as e:
+                            e = sys.exc_info()
                             log.error("{0}".format(e))  	
     except Exception as e:
+        e = sys.exc_info()
         log.error("{0}".format(e))
     finally:
         db.close_session()

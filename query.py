@@ -12,6 +12,7 @@ from sqlalchemy import Table
 from sqlalchemy import MetaData
 from sqlalchemy.orm import mapper
 from logging_class import LoggingClass
+from database import MySQLDatabase
 
 log = LoggingClass('',True).get_logger()
 
@@ -36,7 +37,7 @@ def db_query(tab, session, fname):
         flt = rows.filter(TableObject.file_name == fname)
         for j in flt:
             if j.file_name:
-                path = os.path.join(j.storage_path,j.file_path)
+                path = j.storage_path + j.file_path
                 full_path = os.path.join(path,str(j.file_version),j.file_name)
                 return full_path, j.checksum, j.checksum_gz
     except Exception as e:
@@ -50,4 +51,4 @@ if __name__ == "__main__":
     port = '3307'
     db = MySQLDatabase(user,pwd,host,port,dbname)
     Session = db.create_session()
-    print(database_query('AFO',session,'AF597076.fits.gz'))
+    print(db_query('AFO',Session,'AF597076.fits.gz'))

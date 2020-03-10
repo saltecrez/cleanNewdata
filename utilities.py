@@ -69,4 +69,4 @@ if __name__ == "__main__":
     msg = 'Severe alert'
   
     SendEmail(msg,recipient,sender,smtphost).send_email()
-    print(md5Checksum('/home/archivio/development/cleanNewdata/Schmidt/SC116314.fits.gz').calculate_checksum())
+    print(md5Checksum('/home/archivio/development/cleanNewdata/Schmidt/SC116457.fits').calculate_checksum())
