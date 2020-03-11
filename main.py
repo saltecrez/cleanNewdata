@@ -58,7 +58,7 @@ def main():
                 cksgz_db = db_element[2]
                 cksgz_stg = md5Checksum(storage_path).calculate_checksum() 
                 cks_stg = md5Checksum(storage_path).get_checksum_gz()
-    
+                print(fname_gz,cks_db,cks_stg,cks_newdata,cksgz_db,cksgz_stg) 
                 if cksgz_stg == cksgz_db and cks_stg == cks_db == cks_newdata:
                     try:
                         os.remove(file_path)
@@ -72,3 +72,6 @@ def main():
                 pass
 
     db.close_session()
+
+if __name__ == "__main__":
+   main()
