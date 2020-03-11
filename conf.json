@@ -1,12 +1,12 @@
 {
-        "ingest_folder": ["/home/archivio/development/cleanNewdata/T182/", "/home/archivio/development/cleanNewdata/Schmidt/"],
+        "ingest_folder": ["/home/archive/path1/", "/home/archive/path2/"],
         "db_host": "localhost",
-        "db_pwd": "Archa123.",
-        "db_name": "metadata_asiago",
-        "db_port": "3307",
+        "db_pwd": "s3cret",
+        "db_name": "metadata",
+        "db_port": "3306",
         "db_user": "archa",
-        "email": "elisa.londero@inaf.it",
-	"sender": "archivio@hactar",
-	"smtp_host": "mail.oapd.inaf.it",	
-        "db_tables": ["AFO","ECH","SBI"]
+        "email": "average.employee@domain.com",
+	"sender": "archive@machine",
+	"smtp_host": "gmail.com",	
+        "db_tables": ["table1","table2","table3"]
 }
