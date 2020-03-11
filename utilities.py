@@ -5,12 +5,12 @@ __email__ = "elisa.londero@inaf.it"
 __date__ = "January 2020"
 
 import os
-import logging
-import logging.handlers
 import gzip
 import smtplib
 import hashlib
+import logging
 import email.utils
+import logging.handlers
 from email.mime.text import MIMEText
 
 class LoggingClass(object):
