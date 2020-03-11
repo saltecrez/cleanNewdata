@@ -27,8 +27,8 @@ class NewdataFilesList(object):
             flat_list = [item for sublist in fits_list for item in sublist]
             return flat_list
         except Exception as e:
-            e = sys.exc_info()
-            log.error("{0}".format(e))
+            msg = "Newdata files list excep - NewdataFilesList.create_list -- "
+            log.error("{0}{1}".format(msg,e))
 
 def main():
     dbuser = rj.get_db_user();  dbpwd = rj.get_db_pwd()   
@@ -61,10 +61,9 @@ def main():
                         try:
                             os.remove(file_path)
                         except Exception as e:
-                            e = sys.exc_info()
-                            log.error("{0}".format(e))  	
+                            msg = "File removal exception --"
+                            log.error("{0}{1}".format(msg,e))  	
     except Exception as e:
-        e = sys.exc_info()
         log.error("{0}".format(e))
     finally:
         db.close_session()

@@ -9,7 +9,6 @@ import smtplib
 import hashlib
 import email.utils
 from email.mime.text import MIMEText
-from smtplib import SMTPException
 from logging_class import LoggingClass
 
 log = LoggingClass('',True).get_logger()
@@ -30,7 +29,8 @@ class SendEmail(object):
         try:
             server = smtplib.SMTP(self.smtphost, 25)
         except Exception as e:
-            log.error("{0}".format(e))
+            msg = "SMTP connection excep - SendEmail.send_email -- " 
+            log.error("{0}{1}".format(msg,e))
         else:
             server.sendmail(self.sender, [self.recipient], msg.as_string())
             server.quit()
@@ -50,7 +50,8 @@ class md5Checksum(object):
                         hash_md5.update(chunk)
                 return hash_md5.hexdigest()
         except Exception as e:
-            log.error("{0}".format(e))
+            msg = "Checksum calculation excep - md5Checksum.calculate_checksum -- "
+            log.error("{0}{1}".format(msg,e))
 
     def get_checksum_gz(self):
         try:
@@ -60,12 +61,13 @@ class md5Checksum(object):
             fopen.close()
             return chks
         except Exception as e:
-            log.error("{0}".format(e))
+            msg = "Checksum calculation excep - md5Checksum.get_checksum_gz -- "
+            log.error("{0}{1}".format(msg,e))
 
 if __name__ == "__main__":
     recipient = 'londero@oats.inaf.it'
     sender = 'archivio@hactar' 
-    smtphost = 'mail.oapd.inaf.it'  
+    smtphost = 'mal.oapd.inaf.it'  
     msg = 'Severe alert'
   
     SendEmail(msg,recipient,sender,smtphost).send_email()

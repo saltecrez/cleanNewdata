@@ -26,14 +26,16 @@ class MySQLDatabase(object):
             db_session = sessionmaker(bind=engine)
             return db_session()
         except Exception as e:
-            log.error("{0}".format(e))
+            msg = "Database session creation excep - MySQLDatabase.create_session -- "
+            log.error("{0}{1}".format(msg,e))
 
     def validate_session(self):
         try:
             connection = self.create_session().connection()
             return True
         except Exception as e:
-            log.error("{0}".format(e))
+            msg = "Database session validation excep - MySQLDatabase.validate_session -- "
+            log.error("{0}{1}".format(msg,e))
             return False
 
     def close_session(self):
@@ -41,12 +43,13 @@ class MySQLDatabase(object):
             self.create_session().close()
             return True
         except Exception as e: 
-            log.error("{0}".format(e))
+            msg = "Database session closing excep - MySQLDatabase.close_session -- "
+            log.error("{0}{1}".format(msg,e))
             return False
 
 if __name__ == "__main__":
     user = 'archa'
-    pwd = 'Archa123.'
+    pwd = 'Arch123.'
     host = 'localhost'
     dbname = 'metadata_asiago'
     port = '3307'

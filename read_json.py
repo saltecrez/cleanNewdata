@@ -43,7 +43,7 @@ class ReadJson(object):
 
     def get_smtp_host(self):
         try:
-            smtp_host = self._create_dictionary().get("smtphost")
+            smtp_host = self._create_dictionary().get("smtp_host")
             if smtp_host is None:
                 raise MissingConfParameter('smtp_host')
             return smtp_host
@@ -52,7 +52,7 @@ class ReadJson(object):
 
     def get_db_host(self):
         try:
-            db_host = self._create_dictionary().get("dbhost")
+            db_host = self._create_dictionary().get("db_host")
             if db_host is None:
                 raise MissingConfParameter('db_host')
             return db_host
@@ -61,7 +61,7 @@ class ReadJson(object):
 
     def get_db_user(self):
         try:
-            db_user = self._create_dictionary().get("dbuser")
+            db_user = self._create_dictionary().get("db_user")
             if db_user is None:
                 raise MissingConfParameter('db_user')
             return db_user
@@ -70,7 +70,7 @@ class ReadJson(object):
 
     def get_db_pwd(self):
         try:
-            db_pwd = self._create_dictionary().get("dbpwd")
+            db_pwd = self._create_dictionary().get("db_pwd")
             if db_pwd is None:
                 raise MissingConfParameter('db_pwd')
             return db_pwd
@@ -79,7 +79,7 @@ class ReadJson(object):
 
     def get_db_name(self):
         try:
-            db_name = self._create_dictionary().get("dbname")
+            db_name = self._create_dictionary().get("db_name")
             if db_name is None:
                 raise MissingConfParameter('db_name')
             return db_name
@@ -88,7 +88,7 @@ class ReadJson(object):
 
     def get_db_port(self):
         try:
-            db_port = self._create_dictionary().get("dbport")
+            db_port = self._create_dictionary().get("db_port")
             if db_port is None:
                 raise MissingConfParameter('db_port')
             return db_port
@@ -97,7 +97,7 @@ class ReadJson(object):
 
     def get_db_tables(self):
         try:
-            db_tables = self._create_dictionary().get("dbtables")
+            db_tables = self._create_dictionary().get("db_tables")
             if db_tables is None:
                 raise MissingConfParameter('db_tables')
             return db_tables
@@ -106,7 +106,7 @@ class ReadJson(object):
 
     def get_ingest_folder(self):
         try:
-            ing_folder = self._create_dictionary().get("ingestfolder")
+            ing_folder = self._create_dictionary().get("ingest_folder")
             if ing_folder is None:
                 raise MissingConfParameter('ing_folder')
             return ing_folder

@@ -41,7 +41,8 @@ def db_query(tab, session, fname):
                 full_path = os.path.join(path,str(j.file_version),j.file_name)
                 return full_path, j.checksum, j.checksum_gz
     except Exception as e:
-            log.error("{0}".format(e))
+        msg = "Database query excep - db_query -- "
+        log.error("{0}{1}".format(msg,e))
     
 if __name__ == "__main__":
     user = 'archa'
@@ -51,4 +52,4 @@ if __name__ == "__main__":
     port = '3307'
     db = MySQLDatabase(user,pwd,host,port,dbname)
     Session = db.create_session()
-    print(db_query('AFO',Session,'AF597076.fits.gz'))
+    print(db_query('AFO',Session,'AF57076.fits.gz'))
