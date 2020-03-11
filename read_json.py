@@ -6,8 +6,8 @@ __date__ = "June 2018"
 
 import os
 import json
-from logging_class import LoggingClass
-from logging_class import MissingConfParameter
+from utilities import LoggingClass
+from utilities import MissingConfParameter
 
 log = LoggingClass('',True).get_logger()
 
@@ -112,7 +112,3 @@ class ReadJson(object):
             return ing_folder
         except MissingConfParameter as e:
             log.error("{0}".format(e))
-
-if __name__ == "__main__":
-    print(ReadJson().get_db_user())
-#    print(ReadJson().get_db_host())

@@ -1,30 +1,20 @@
 # cleanNewdata
 
-- **Goal**: clean-up newdata folder at the telescope  
+- **Goal**: clean-up newdata folder on the ingestion machine 
 
-- **Targets**: Asiago archive
+- **Targets**: all the archives - to be installed on the first ingestion node
   
-- **Description**: the checksum of the file in newdata on the telescope machine is compared to the checksum found in DB locally and with the checksum of the file in the local and  in the remote storages.   
-
+- **Description**: the checksum of the file in newdata on the ingestion machine is compared to the checksum found in DB and with the checksum of the file in the storage. If the checksums match, the file is removed. All these operations are performed locally, at the ingestion site. Remember that in ordero to guarantee file integrity an additional check must be done at the final archiving site.   
  
 - **Configuration parameters**:
 
-      "ingestion_folder": folder that needs to be cleaned-up  
-      "second_ingestion_folder": potential second folder that needs to be cleaned-up   
-      "logfile": name of the logfile  
+      "ingest_folder": folders that need to be cleaned-up  
       "db_host": ip address of the host containing the local database  
-      "db_password": password of the local database for the user specified in db_user  
-      "db_user": user of the database who can access the schema specified in db_schema  
-      "db_schema": name of the schema to be queried        
-      "file_init": first two letters of the FITS files to be found in the ingestion folders eg for Asiago: ["AF","EC","SC"] 
-      "sql_instr": name of the instrument tables found in the metadata database eg for Asiago: ["AFO","ECH","SBI"]  
-      "ssh_host": ip address of the bastion between the local ingestion machine and the remote archiving machine  
-      "ssh_port": ssh port on bastion  
-      "ssh_user": username to connect to bastion  
-      "ssh_pwd": password to connect to bastion  
-      "ssh_priv_key": path to the local private key  
-      "remote_host": ip address of the remote machine  
-      "remote_db_port": port of the database on the remote machine  
-      "remote_db_schema": name of the meadata schema on the remote machine  
-      "remote_db_user": username to connect to the database on the remote machine  
-      "remote_db_pwd": password to connect to the database on the remote machine  
+      "db_pwd": local database password
+      "db_user": local database user 
+      "db_name": local database to be queried
+      "db_port": local database port
+      "email": 
+      "sender":
+      "smtp_host":
+      "db_tables":
