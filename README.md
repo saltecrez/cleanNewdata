@@ -8,16 +8,16 @@
  
 - **Configuration parameters**:
 
-      "ingest_folder": list of folders that need to be cleaned-up  
-      "db_host": IP address /name of the host containing the local database (usually localhost) 
-      "db_pwd": local database password
-      "db_user": local database user 
-      "db_name": name of the local database to be queried
-      "db_port": local database port
-      "email": email receiving the alerts 
-      "sender": email sender
-      "smtp_host": smtp domain of the local machine sending the email
-      "db_tables": list of tables inside db_name that need to be queried
+      -ingest_folder [string]: list of folders that need to be cleaned-up  
+      -db_host [string]: IP address/name of the host containing the local database (usually localhost) 
+      -db_pwd [string]: local database password
+      -db_user [string]: local database user 
+      -db_name [string]: name of the local database to be queried
+      -db_port [unsigned long]: local database port
+      -email [string]: email receiving the alerts 
+      -sender [string]: email sender
+      -smtp_host [string]: smtp domain of the local machine sending the email
+      -db_tables [string vector]: list of tables inside db_name that need to be queried
 
 - **Requirements**:
     - python3

@@ -38,9 +38,9 @@ def main():
     sender = rj.get_sender();   smtphost = rj.get_smtp_host() 
     recipient = rj.get_recipient() 
 
-    db = MySQLDatabase(dbuser, dbpwd, dbhost, dbport, dbname)
+    db = MySQLDatabase(dbuser, dbpwd, dbname, dbhost, dbport)
 
-    Session = db.create_session()
+    Session = db.mysql_session()
     
     files_list = NewdataFilesList().create_list()
 

@@ -4,7 +4,6 @@ __author__ = "Elisa Londero"
 __email__ = "elisa.londero@inaf.it"
 __date__ = "January 2020"
 
-import os
 import gzip
 import smtplib
 import hashlib
@@ -47,7 +46,7 @@ class MissingConfParameter(Exception):
 log = LoggingClass('',True).get_logger()
 
 class SendEmail(object):
-    def __init__(self, message, recipient, sender, smtphost):
+    def __init__(self, message, recipient, smtphost, sender=''):
         self.message = message
         self.recipient = recipient
         self.sender = sender

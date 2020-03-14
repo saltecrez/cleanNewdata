@@ -31,6 +31,7 @@ class ReadJson(object):
             return recipient
         except MissingConfParameter as e:
             log.error("{0}".format(e))
+            exit(1)
 
     def get_sender(self):
         try:
@@ -49,6 +50,7 @@ class ReadJson(object):
             return smtp_host
         except MissingConfParameter as e:
             log.error("{0}".format(e))
+            exit(1)
 
     def get_db_host(self):
         try:
@@ -67,6 +69,7 @@ class ReadJson(object):
             return db_user
         except MissingConfParameter as e:
             log.error("{0}".format(e))
+            exit(1)
 
     def get_db_pwd(self):
         try:
@@ -76,6 +79,7 @@ class ReadJson(object):
             return db_pwd
         except MissingConfParameter as e:
             log.error("{0}".format(e))
+            exit(1)
 
     def get_db_name(self):
         try:
@@ -85,6 +89,7 @@ class ReadJson(object):
             return db_name
         except MissingConfParameter as e:
             log.error("{0}".format(e))
+            exit(1)
 
     def get_db_port(self):
         try:
@@ -103,6 +108,7 @@ class ReadJson(object):
             return db_tables
         except MissingConfParameter as e:
             log.error("{0}".format(e))
+            exit(1)
 
     def get_ingest_folder(self):
         try:
@@ -112,3 +118,4 @@ class ReadJson(object):
             return ing_folder
         except MissingConfParameter as e:
             log.error("{0}".format(e))
+            exit(1)
